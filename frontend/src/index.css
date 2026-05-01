@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-card {
+  width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.login-logo h1 {
+  color: #1890ff;
+  margin-bottom: 8px;
+  font-size: 28px;
+}
+
+.login-logo p {
+  color: #666;
+  font-size: 14px;
+}
+
+.ant-layout {
+  min-height: 100vh;
+}
+
+.ant-layout-sider {
+  background: #001529;
+}
+
+.ant-layout-sider .ant-menu {
+  background: #001529;
+  border-right: none;
+}
+
+.ant-layout-sider .ant-menu-item {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.ant-layout-sider .ant-menu-item:hover,
+.ant-layout-sider .ant-menu-item-active {
+  color: #fff;
+  background: transparent;
+}
+
+.ant-layout-sider .ant-menu-item-selected {
+  background: #1890ff;
+  color: #fff;
+}
+
+.ant-layout-sider .ant-menu-submenu-title {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.ant-layout-sider .ant-menu-submenu-title:hover {
+  color: #fff;
+}
+
+.ant-layout-header {
+  background: #fff;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+
+.ant-layout-header .header-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1890ff;
+}
+
+.ant-layout-content {
+  margin: 24px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  min-height: 280px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #262626;
+}
+
+.filter-bar {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.action-bar {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+.status-tag-draft {
+  background: #fafafa;
+  border-color: #d9d9d9;
+  color: #8c8c8c;
+}
+
+.status-tag-submitted {
+  background: #e6f7ff;
+  border-color: #91d5ff;
+  color: #1890ff;
+}
+
+.status-tag-returned {
+  background: #fff2f0;
+  border-color: #ffccc7;
+  color: #ff4d4f;
+}
+
+.report-card {
+  margin-bottom: 16px;
+}
+
+.report-card .ant-card-head-title {
+  font-weight: 600;
+}
+
+.report-section {
+  margin-bottom: 16px;
+}
+
+.report-section h4 {
+  color: #1890ff;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.report-section p {
+  color: #333;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px;
+  color: #999;
+}
+
+.unsubmitted-card {
+  background: #fff7e6;
+  border-color: #ffd591;
+}
+
+.statistics-card {
+  text-align: center;
+}
+
+.statistics-card .stat-number {
+  font-size: 32px;
+  font-weight: 600;
+  color: #1890ff;
+}
+
+.statistics-card .stat-label {
+  color: #666;
+  margin-top: 8px;
+}
+
+.chart-container {
+  margin-top: 24px;
+}
