@@ -44,7 +44,7 @@ def login():
     if not user or not user.check_password(password):
         return jsonify({'msg': '用户名或密码错误'}), 401
     
-    access_token = create_access_token(identity=user.id)
+    access_token = create_access_token(identity=str(user.id))
     return jsonify({
         'access_token': access_token,
         'user': user.to_dict()
@@ -53,7 +53,7 @@ def login():
 @app.route('/api/current_user', methods=['GET'])
 @jwt_required()
 def current_user():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     if not user:
         return jsonify({'msg': '用户不存在'}), 404
@@ -62,7 +62,7 @@ def current_user():
 @app.route('/api/teams', methods=['GET'])
 @jwt_required()
 def get_teams():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     if user.role == 'admin':
@@ -77,7 +77,7 @@ def get_teams():
 @app.route('/api/teams', methods=['POST'])
 @jwt_required()
 def create_team():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     if user.role != 'admin':
@@ -103,7 +103,7 @@ def create_team():
 @app.route('/api/teams/<int:team_id>', methods=['PUT'])
 @jwt_required()
 def update_team(team_id):
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     if user.role != 'admin':
@@ -127,7 +127,7 @@ def update_team(team_id):
 @app.route('/api/teams/<int:team_id>', methods=['DELETE'])
 @jwt_required()
 def delete_team(team_id):
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     if user.role != 'admin':
@@ -148,7 +148,7 @@ def delete_team(team_id):
 @app.route('/api/users', methods=['GET'])
 @jwt_required()
 def get_users():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     query = User.query
@@ -168,7 +168,7 @@ def get_users():
 @app.route('/api/users', methods=['POST'])
 @jwt_required()
 def create_user():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     if user.role != 'admin':
@@ -206,7 +206,7 @@ def create_user():
 @app.route('/api/users/<int:user_id>', methods=['PUT'])
 @jwt_required()
 def update_user(user_id):
-    user_id_current = get_jwt_identity()
+    user_id_current = int(get_jwt_identity())
     user = User.query.get(user_id_current)
     
     if user.role != 'admin':
@@ -234,7 +234,7 @@ def update_user(user_id):
 @app.route('/api/users/<int:user_id>', methods=['DELETE'])
 @jwt_required()
 def delete_user(user_id):
-    user_id_current = get_jwt_identity()
+    user_id_current = int(get_jwt_identity())
     user = User.query.get(user_id_current)
     
     if user.role != 'admin':
@@ -255,7 +255,7 @@ def delete_user(user_id):
 @app.route('/api/weekly_reports', methods=['GET'])
 @jwt_required()
 def get_weekly_reports():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     page = request.args.get('page', 1, type=int)
@@ -302,7 +302,7 @@ def get_weekly_reports():
 @app.route('/api/weekly_reports/current_week', methods=['GET'])
 @jwt_required()
 def get_current_week_report():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     today = date.today()
@@ -330,7 +330,7 @@ def get_current_week_report():
 @app.route('/api/weekly_reports', methods=['POST'])
 @jwt_required()
 def create_weekly_report():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     data = request.get_json()
@@ -381,7 +381,7 @@ def create_weekly_report():
 @app.route('/api/weekly_reports/<int:report_id>', methods=['PUT'])
 @jwt_required()
 def update_weekly_report(report_id):
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     report = WeeklyReport.query.get(report_id)
@@ -417,7 +417,7 @@ def update_weekly_report(report_id):
 @app.route('/api/weekly_reports/<int:report_id>/return', methods=['POST'])
 @jwt_required()
 def return_report(report_id):
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     if user.role not in ['admin', 'manager']:
@@ -442,7 +442,7 @@ def return_report(report_id):
 @app.route('/api/unsubmitted', methods=['GET'])
 @jwt_required()
 def get_unsubmitted():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     year = request.args.get('year', type=int)
@@ -483,7 +483,7 @@ def get_unsubmitted():
 @app.route('/api/weekly_reports/export', methods=['GET'])
 @jwt_required()
 def export_weekly_reports():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     year = request.args.get('year', type=int)
@@ -566,7 +566,7 @@ def export_weekly_reports():
 @app.route('/api/statistics/submissions', methods=['GET'])
 @jwt_required()
 def get_submission_statistics():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     start_year = request.args.get('start_year', type=int)
@@ -604,7 +604,7 @@ def get_submission_statistics():
 @app.route('/api/statistics/weekly_rates', methods=['GET'])
 @jwt_required()
 def get_weekly_rates():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     year = request.args.get('year', type=int)
